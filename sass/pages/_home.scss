@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    header {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+
+        .goToMain {
+            visibility: hidden;
+            display: block;
+            width: 182px;
+            line-height: 30px;
+            position: absolute;
+            left: calc(50% - 91px); //50% - width of element divided by 2
+            top: 6px;
+            padding: 0;
+            background-color: $secondaryColor;
+            color: black;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        section {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+
+            nav ul {
+                display: flex;
+                justify-content: row;
+                align-items: center;
+                justify-content: space-around;
+
+                li {
+                    list-style: none;
+                    margin: 0px 5px;
+                }
+            }
+
+        }
+    }
+}
