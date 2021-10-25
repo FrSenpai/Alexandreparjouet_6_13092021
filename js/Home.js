@@ -31,12 +31,17 @@ class Home {
     }
 
     initPhotographersDOM(photographer) {
-        console.log(photographer)
+        //we create DOM elements
         let section = this.createCtnPhotographer()
         let avatar = this.createAvatar(photographer.portrait)
+        let bio = this.createBio(photographer)
         section.appendChild(avatar)
         let ctnPhotographers = document.getElementsByClassName('ctnPhotographers')
         ctnPhotographers[0].appendChild(section)
+    }
+
+    createBio() {
+        
     }
     createCtnPhotographer() {
         let section = document.createElement("section")
