@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/FrSenpai/Alexandreparjouet_6_13092021/issues"
   },
-  "homepage": "https://github.com/FrSenpai/Alexandreparjouet_6_13092021#readme"
+  "homepage": "https://github.com/FrSenpai/Alexandreparjouet_6_13092021#readme",
+  "type":"module"
 }
