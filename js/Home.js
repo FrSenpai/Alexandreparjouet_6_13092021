@@ -1,8 +1,20 @@
 class Home {
-    env
+    tags= [];
     constructor() {
         this.loadPhotographers()
-        this.env = import('../env/env.js');
+    }
+
+    loadTags(tags){
+        tags.map((t) => !this.tags.includes(t) ? this.tags.push(t) : null)
+    }
+
+    createDOMTags() {
+        const list = document.getElementsByClassName("tagList")
+        this.tags.map((t) => {
+            let li = document.createElement("li")
+            li.textContent = t
+            list[0].appendChild(li)
+        })
     }
 
     loadPhotographers() {
@@ -11,8 +23,9 @@ class Home {
             res.photographers.map((p) => {
                 console.log(p)
                 //we create a section for each photographers with many datas
-
+                this.loadTags(p.tags)
             })
+            this.createDOMTags()
         })
     }
 
@@ -20,7 +33,7 @@ class Home {
         
         console.log(photographer)
         let section = document.createElement("section")
-        let avatar = document.createElement('img').setAttribute('src', env.url+ "/assets/portraits/" + photographer.portrait)
-        console.log(env)
+        let avatar = document.createElement('img').setAttribute('src', "http://localhost:5500/assets/portraits/" + photographer.portrait)
+
     }
 }
