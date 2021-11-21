@@ -1,6 +1,7 @@
 class Home {
     constructor() {
         this.loadPhotographers()
+        this.handleBottomScroll()
     }
 
     loadPhotographers() {
@@ -13,6 +14,5 @@ class Home {
             })
         })
     }
-
 
 }

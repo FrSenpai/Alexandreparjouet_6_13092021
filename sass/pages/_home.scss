@@ -2,24 +2,27 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
     header {
         display: flex;
         flex-direction: column;
         width: 70%;
         height: 150px;
         margin-top: 44px;
+
         .goToMain {
             visibility: hidden;
             display: block;
             width: 182px;
             line-height: 30px;
-            position: absolute;
+            position: fixed;
             left: calc(50% - 91px); //50% - width of element divided by 2
             top: 6px;
             padding: 0;
             background-color: $secondaryColor;
             color: black;
             text-decoration: none;
+
             &:hover {
                 text-decoration: underline;
             }
@@ -36,8 +39,9 @@ body {
                 justify-content: row;
                 align-items: center;
                 justify-content: space-around;
-                margin:0;
+                margin: 0;
                 height: 100%;
+
                 li {
                     list-style: none;
                     margin: 0px 5px;
@@ -45,22 +49,64 @@ body {
             }
 
         }
-        
+
     }
+
     main {
         h1 {
             margin-top: 44px;
         }
+
         .ctnPhotographers {
             position: absolute;
             left: 0;
             width: 100%;
             display: flex;
             flex-direction: row;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-around;
             flex-wrap: wrap;
             margin-top: 60px;
+
+            h3 {
+                margin-bottom: 0;
+            }
+
+            .localisation {
+                color: $primaryColor;
+                font-size: 13px;
+            }
+
+            .tagline {
+                font-size: 10px;
+                margin: 0;
+            }
+
+            .price {
+                font-size: 9px;
+                color: #757575;
+            }
+
+            .ctnTags {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                margin: 0;
+                li {
+                    margin: 5px;
+                    color: $primaryColor;
+                    font-size: 12px;
+                    font-weight: 500;
+                    border: 0.5px solid #C4C4C4;
+                    box-sizing: border-box;
+                    border-radius: 11px;
+                    padding:2px;
+                    list-style: none;
+                }
+                margin-bottom: 50px;
+            }
         }
     }
 }
