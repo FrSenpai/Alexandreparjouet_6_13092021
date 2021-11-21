@@ -2,10 +2,19 @@ class Home {
     tags= [];
     constructor() {
         this.loadPhotographers()
+        this.handleBottomScroll()
     }
 
     loadTags(tags){
         tags.map((t) => !this.tags.includes(t) ? this.tags.push(t) : null)
+    }
+
+    handleBottomScroll() {
+        document.addEventListener('scroll', () => {
+            const displayBtn = document.getElementsByClassName("goToMain")[0]
+            console.log(window.scrollY)
+            window.scrollY === 0 ? displayBtn.style.visibility = "hidden" : displayBtn.style.visibility = "visible"
+        })
     }
 
     createDOMTags() {

@@ -15,7 +15,7 @@ body {
             display: block;
             width: 182px;
             line-height: 30px;
-            position: absolute;
+            position: fixed;
             left: calc(50% - 91px); //50% - width of element divided by 2
             top: 6px;
             padding: 0;
