@@ -16,10 +16,8 @@ class PhotographerService {
 
     getById(id) {
         return fetch('http://localhost:5500/assets/json/FishEyeData.json').then((res) => res.json()).then((res) => {
-        console.log(res)
-        console.log()
         let result = {
-            photographer:res.photographers.filter((p) => p.id === id),
+            photographer:res.photographers.filter((p) => p.id === id)[0],
             media:res.media.filter((m) => m.photographerId === id)
         }
         return result

@@ -12,10 +12,18 @@ class Photographer {
 
     getPhotographer(id) {
         photographerService.getById(id).then((r) => {
-            console.log(r)
+            if (r) {
+                this.processBanner(r.photographer)
+            }
         })
     }
 
+    processBanner(p) {
+        const ctnPhotographerData = document.getElementById('photographerData')
+        let name = document.createElement('h1')
+        name.textContent = p.name
+        ctnPhotographerData.appendChild(name)
+    }
 
 }
 let photographerService = new PhotographerService()
