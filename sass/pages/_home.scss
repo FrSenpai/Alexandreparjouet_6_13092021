@@ -1,39 +1,15 @@
 body {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 
     header {
         display: flex;
-        flex-direction: column;
-        width: 70%;
+        flex-direction: row;
+        width: 90%;
         height: 150px;
-        margin-top: 44px;
-
-        .goToMain {
-            visibility: hidden;
-            display: block;
-            width: 182px;
-            line-height: 30px;
-            position: fixed;
-            left: calc(50% - 91px); //50% - width of element divided by 2
-            top: 6px;
-            padding: 0;
-            background-color: $secondaryColor;
-            color: black;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-
-        section {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
-
+        justify-content: space-between;
+        align-items: center;
             nav ul {
                 display: flex;
                 justify-content: row;
@@ -48,18 +24,14 @@ body {
                 }
             }
 
-        }
+        
 
     }
 
     main {
-        h1 {
-            margin-top: 44px;
-        }
+        width: 100%;
 
         .ctnPhotographers {
-            position: absolute;
-            left: 0;
             width: 100%;
             display: flex;
             flex-direction: row;
@@ -87,26 +59,7 @@ body {
                 color: #757575;
             }
 
-            .ctnTags {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                padding: 0;
-                margin: 0;
-                li {
-                    margin: 5px;
-                    color: $primaryColor;
-                    font-size: 12px;
-                    font-weight: 500;
-                    border: 0.5px solid #C4C4C4;
-                    box-sizing: border-box;
-                    border-radius: 11px;
-                    padding:2px;
-                    list-style: none;
-                }
-                margin-bottom: 50px;
-            }
+            
         }
     }
 }
