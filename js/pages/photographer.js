@@ -1,11 +1,10 @@
 class Photographer {
     constructor() {
-        this.loadData()
+        this.loadParams()
     }
 
-    loadData() {
+    loadParams() {
         const params = new URLSearchParams(window.location.search)
-        console.log(params.get('id'))
         //TODO handle error
         params.get('id') ? this.getPhotographer(Number(params.get('id'))) :null
     }
