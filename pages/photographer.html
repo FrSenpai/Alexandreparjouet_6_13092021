@@ -29,12 +29,16 @@
       <section id="ctnMedias">
         <section class="ctnFilterBy">
           <label for="filterBy" class="labelFilterBy">Trier par</label>
-          <select name="filterBy" id="filterBy">
-            
-              <p>Popularité</p>
-            
-            
-          </select>
+          <div class="custom-select">
+            <select name="filterBy" id="filterBy">
+              <option value="choice">Choisir un filtre</option>
+              <option value="popularity">Popularité</option>
+              <option value="date">Date</option>
+              <option value="title">Titre</option>
+              
+            </select>
+          </div>
+          
         </section>
       </section>
     </main>
