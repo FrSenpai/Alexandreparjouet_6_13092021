@@ -44,6 +44,7 @@ class Photographer {
         /*look for any elements with the class "custom-select":*/
         x = document.getElementsByClassName("custom-select");
         l = x.length;
+        let initDone = false
         for (i = 0; i < l; i++) {
             selElmnt = x[i].getElementsByTagName("select")[0];
             ll = selElmnt.length;
@@ -55,11 +56,12 @@ class Photographer {
             /*for each element, create a new DIV that will contain the option list:*/
             b = document.createElement("DIV");
             b.setAttribute("class", "select-items select-hide");
-            for (j = 1; j < ll; j++) {
+            for (j = 0; j < ll; j++) {
                 /*for each option in the original select element,
                 create a new DIV that will act as an option item:*/
                 c = document.createElement("DIV");
                 c.innerHTML = selElmnt.options[j].innerHTML;
+                if (!initDone) {c.setAttribute('class', 'same-as-selected hidden'); initDone=true}
                 c.addEventListener("click", function (e) {
                     /*when an item is clicked, update the original select box,
                     and the selected item:*/
@@ -72,9 +74,7 @@ class Photographer {
                         if (s.options[i].innerHTML == this.innerHTML) {
                             s.selectedIndex = i;
                             h.innerHTML = this.innerHTML;
-                            
                             y = this.parentNode.getElementsByClassName("same-as-selected");
-                            
                             yl = y.length;
                             for (k = 0; k < yl; k++) {
                                 //we display again last selected value
@@ -130,8 +130,6 @@ class Photographer {
                 }
                 this.nextSibling.classList.toggle("select-hide");
                 this.classList.toggle("select-arrow-active");
-                
-                
             });
             /*if the user clicks anywhere outside the select box,
 then close all select boxes:*/
