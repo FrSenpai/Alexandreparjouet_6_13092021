@@ -1,5 +1,6 @@
 class Photographer {
     photographer
+    gallery
     constructor() {
         this.loadParams()
         this.processSelect()
@@ -16,6 +17,7 @@ class Photographer {
             if (r) {
                 this.photographer = new PhotographerEntity(r)
                 this.processBanner()
+                this.gallery = new Gallery(r.medias)
             }
         })
     }

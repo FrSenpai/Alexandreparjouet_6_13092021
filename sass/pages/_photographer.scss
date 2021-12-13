@@ -74,6 +74,30 @@ main {
                 font-weight: 700;
             }
         }
+
+        .ctnGallery {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            .imageItem {
+                width: 30%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                img {
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                }
+                .ctnInfos {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+            }
+        }
     }
 }
 
