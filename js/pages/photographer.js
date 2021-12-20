@@ -18,8 +18,30 @@ class Photographer {
                 this.photographer = new PhotographerEntity(r)
                 this.processBanner()
                 this.gallery = new Gallery(r.medias)
+                //count total of likes
+                let totalLikes = 0
+                r.medias.map((m) => totalLikes += m.likes)
+                this.processPhotographerInfos(totalLikes, r.photographer.price) 
             }
         })
+    }
+
+    processPhotographerInfos(totalLikes, price) {
+        const ctn = document.createElement('section')
+        ctn.setAttribute('class', 'ctnPhotographerInfos')
+        const ctnTotalLikes = document.createElement('section')
+        const totalLikesDOM = document.createElement('p')
+        totalLikesDOM.setAttribute('id', 'totalLikesCount')
+        totalLikesDOM.textContent = totalLikes
+        const heartIcon = document.createElement('img')
+        heartIcon.setAttribute('src', 'http://localhost:5500/assets/black_hearth.png')
+        ctnTotalLikes.appendChild(totalLikesDOM)
+        ctnTotalLikes.appendChild(heartIcon)
+        const pricePerDay = document.createElement('p')
+        pricePerDay.textContent = price + '€ / jour'
+        ctn.appendChild(ctnTotalLikes)
+        ctn.appendChild(pricePerDay)
+        const main = document.getElementsByTagName("main").item(0).appendChild(ctn)
     }
 
     processBanner() {

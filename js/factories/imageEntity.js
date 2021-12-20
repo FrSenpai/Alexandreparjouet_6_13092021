@@ -42,5 +42,6 @@ class ImageEntity {
     updateLikes(media, likesDOM) {
         media.likes++
         likesDOM.textContent = media.likes
+        document.getElementById('totalLikesCount').textContent = Number(document.getElementById('totalLikesCount').textContent) +1
     }
 }                                          
