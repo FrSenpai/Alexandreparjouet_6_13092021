@@ -9,11 +9,10 @@ class ImageEntity {
         const ctnMedia = document.createElement('section')
         ctnMedia.setAttribute('class', 'ctnGalleryItem')
         let mediaDom
-        media?.title ? mediaDom = document.createElement('img') : mediaDom = document.createElement('iframe')
-        //voir avec Joffrey quoi afficher quand vidéo pour la "miniature"
+        media?.image ? mediaDom = document.createElement('img') : mediaDom = document.createElement('video')
         mediaDom.setAttribute('class', 'galleryItem')
+        media?.video ? mediaDom.setAttribute('disablePictureInPicture', "true") : null
         mediaDom.setAttribute('src', `http://localhost:5500/assets/gallery/${media.photographerId}/` + this.getType(media))
-        
         const ctnInfos = document.createElement('section')
         ctnInfos.setAttribute('class',"infos")
         const title = document.createElement('p')
@@ -23,10 +22,11 @@ class ImageEntity {
         likes.textContent = media.likes
         const likesIcon = document.createElement('img')
         likesIcon.setAttribute('src', "http://localhost:5500/assets/hearth.png" )
-        media?.title ? title.textContent = media.title : title.textContent = "VIDEO TODO"
+        likesIcon.addEventListener('click', () => {
+            this.updateLikes(media, likes)
+            })
         title.textContent = media.title
         //insert generated DOM
-
         ctnLikes.appendChild(likes)
         ctnLikes.appendChild(likesIcon)
         ctnInfos.appendChild(title)
@@ -35,9 +35,12 @@ class ImageEntity {
         ctnMedia.appendChild(ctnInfos)
         document.getElementsByClassName("ctnGallery")[0].appendChild(ctnMedia)
     }
-    //QUAND CLICK --> incrémentation, oui mais +1 et -1 ou +1 infini?
+
     getType(media) {
-        console.log(media)
-        return media?.title ? media.image : media.video
+        return media?.image ? media.image : media.video
+    }
+    updateLikes(media, likesDOM) {
+        media.likes++
+        likesDOM.textContent = media.likes
     }
 }                                          
