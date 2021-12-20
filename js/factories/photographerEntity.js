@@ -19,6 +19,7 @@ class PhotographerEntity {
     constructor(photographerData) {
         this.entity = photographerData.photographer
         this.medias = photographerData.medias
+        console.log(this.entity)
     }
 
     setAttr(entity) {
