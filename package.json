@@ -19,5 +19,6 @@
   "homepage": "https://github.com/FrSenpai/Alexandreparjouet_6_13092021#readme",
   "dependencies": {
     "sass": "^1.43.3"
-  }
+  },
+  "devDependencies": {}
 }

@@ -4,7 +4,6 @@ class Gallery {
     }
 
     buildGallery(medias, filter) {
-        console.log(medias)
         switch (filter) {
             case 0:
                 medias.sort(this.dynamicSort("-likes"));

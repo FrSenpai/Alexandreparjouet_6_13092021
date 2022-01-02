@@ -13,6 +13,9 @@ class ImageEntity {
         mediaDom.setAttribute('class', 'galleryItem')
         media?.video ? mediaDom.setAttribute('disablePictureInPicture', "true") : null
         mediaDom.setAttribute('src', `http://localhost:5500/assets/gallery/${media.photographerId}/` + this.getType(media))
+        mediaDom.addEventListener('click', () => {
+            const lightBox = new LightBox()
+        })
         const ctnInfos = document.createElement('section')
         ctnInfos.setAttribute('class',"infos")
         const title = document.createElement('p')
