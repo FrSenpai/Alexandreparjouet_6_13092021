@@ -1,9 +1,11 @@
 class Photographer {
     photographer
     gallery
+    medias
     constructor() {
         this.loadParams()
         this.processSelect()
+        this.handleUpdateFilter()
     }
 
     loadParams() {
@@ -17,11 +19,14 @@ class Photographer {
             if (r) {
                 this.photographer = new PhotographerEntity(r)
                 this.processBanner()
-                this.gallery = new Gallery(r.medias)
+                //filtered by popularity by default
+                this.gallery = new Gallery(r.medias, 0)
+                this.medias = r.medias
                 //count total of likes
+                console.log(this.medias)
                 let totalLikes = 0
                 r.medias.map((m) => totalLikes += m.likes)
-                this.processPhotographerInfos(totalLikes, r.photographer.price) 
+                this.processPhotographerInfos(totalLikes, r.photographer.price)
             }
         })
     }
@@ -63,7 +68,7 @@ class Photographer {
     }
 
     processSelect() {
-        
+
         let x, i, j, l, ll, selElmnt, a, b, c;
         /*look for any elements with the class "custom-select":*/
         x = document.getElementsByClassName("custom-select");
@@ -85,7 +90,10 @@ class Photographer {
                 create a new DIV that will act as an option item:*/
                 c = document.createElement("DIV");
                 c.innerHTML = selElmnt.options[j].innerHTML;
-                if (!initDone) {c.setAttribute('class', 'same-as-selected hidden'); initDone=true}
+                if (!initDone) {
+                    c.setAttribute('class', 'same-as-selected hidden');
+                    initDone = true
+                }
                 c.addEventListener("click", function (e) {
                     /*when an item is clicked, update the original select box,
                     and the selected item:*/
@@ -93,7 +101,7 @@ class Photographer {
                     s = this.parentNode.parentNode.getElementsByTagName("select")[0];
                     sl = s.length;
                     h = this.parentNode.previousSibling;
-                    
+
                     for (i = 0; i < sl; i++) {
                         if (s.options[i].innerHTML == this.innerHTML) {
                             s.selectedIndex = i;
@@ -104,7 +112,7 @@ class Photographer {
                                 //we display again last selected value
                                 y[k].style.display = "flex"
                                 y[k].removeAttribute("class");
-                               
+
                             }
                             this.setAttribute("class", "same-as-selected");
                             //we hide picked value
@@ -122,7 +130,7 @@ class Photographer {
                 and open/close the current select box:*/
                 //change icon when open/close select
                 const selectInp = document.getElementsByClassName('select-selected')[0]
-                if ( selectInp.style.backgroundImage === 'url("../../assets/selectArrow_opened.png")') {
+                if (selectInp.style.backgroundImage === 'url("../../assets/selectArrow_opened.png")') {
                     selectInp.style.backgroundImage = "url('../../assets/selectArrow.png')"
                     selectInp.style.borderBottomLeftRadius = "5px"
                     selectInp.style.borderBottomRightRadius = "5px"
@@ -131,7 +139,7 @@ class Photographer {
                     selectInp.style.borderBottomLeftRadius = "0px"
                     selectInp.style.borderBottomRightRadius = "0px"
                 }
-                 
+
                 e.stopPropagation();
                 /*a function that will close all select boxes in the document,
         except the current select box:*/
@@ -152,6 +160,7 @@ class Photographer {
                         x[i].classList.add("select-hide");
                     }
                 }
+
                 this.nextSibling.classList.toggle("select-hide");
                 this.classList.toggle("select-arrow-active");
             });
@@ -182,9 +191,40 @@ then close all select boxes:*/
                 x[i].classList.add("select-hide");
             }
         }
+
     }
 
+    handleUpdateFilter() {
+        const items = document.getElementsByClassName("select-items")[0].getElementsByTagName('div')
+        console.log(items.length)
+        for (let i = 0; i < items.length; i++) {
+            items[i].addEventListener("click", (e) => {
+                console.log(e)
+                this.updateFilter(e.target.innerHTML)
+            })
+        }
 
+    }
+
+    updateFilter(by) {
+        console.log("update !")
+        const galleryItem = document.getElementsByClassName('ctnGalleryItem')
+        while (galleryItem.length > 0) {
+            galleryItem[0].remove()
+        }
+        
+        switch (by) {
+            case "Popularité":
+                this.gallery = new Gallery(this.medias, 0)
+                break
+            case "Date":
+                this.gallery = new Gallery(this.medias, 1)
+                break
+            case "Titre":
+                this.gallery = new Gallery(this.medias, 2)
+                break
+        }
+    }
 }
 let photographerService = new PhotographerService()
 let home = new Photographer()
