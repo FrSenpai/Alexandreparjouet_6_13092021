@@ -15,11 +15,11 @@ class Gallery {
                 medias.sort(this.dynamicSort("title"))
                 break
         }
-        medias.map((m) => new ImageEntity(m))
+        medias.map((m) => new ImageEntity(m, medias))
     }
 
     dynamicSort(property) {
-        var sortOrder = 1;
+        let sortOrder = 1;
         if(property[0] === "-") {
             sortOrder = -1;
             property = property.substr(1);

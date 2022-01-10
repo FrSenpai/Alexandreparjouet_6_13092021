@@ -1,10 +1,10 @@
 class ImageEntity {
-    constructor(media) {
-        this.buildSection(media) 
+    constructor(media, mediasList) {
+        this.buildSection(media,mediasList) 
         console.log("dsq")
     }
 
-    buildSection(media) {
+    buildSection(media,mediasList) {
         //generate DOM
         const ctnMedia = document.createElement('section')
         ctnMedia.setAttribute('class', 'ctnGalleryItem')
@@ -13,8 +13,10 @@ class ImageEntity {
         mediaDom.setAttribute('class', 'galleryItem')
         media?.video ? mediaDom.setAttribute('disablePictureInPicture', "true") : null
         mediaDom.setAttribute('src', `http://localhost:5500/assets/gallery/${media.photographerId}/` + this.getType(media))
-        mediaDom.addEventListener('click', () => {
-            const lightBox = new LightBox()
+        mediaDom.addEventListener('click', (e) => {
+            let medias = Array.from(document.getElementsByClassName('galleryItem'))
+            const targetId = medias.indexOf(e.target)
+            const lightBox = new LightBox(targetId, mediasList)
         })
         const ctnInfos = document.createElement('section')
         ctnInfos.setAttribute('class',"infos")
