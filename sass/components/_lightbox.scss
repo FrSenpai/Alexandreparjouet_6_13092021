@@ -28,6 +28,7 @@
                 height: 90%;
                 object-fit:contain;
                 border-radius: 5px;width: 100%;
+                cursor: pointer;
             }
 
             video {
@@ -41,6 +42,9 @@
                 margin: 10px 0 10px 0
             }
         }
+        .arrow {
+            cursor: pointer;
+        }
         
         .ctnRightArrow {
             display: flex;
@@ -49,6 +53,7 @@
             .close {
                 position: absolute;
                 top: 10%;
+                cursor: pointer;
             }
         }
 

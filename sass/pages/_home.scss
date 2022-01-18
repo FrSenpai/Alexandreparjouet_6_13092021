@@ -9,22 +9,7 @@ body {
         width: 90%;
         height: 150px;
         justify-content: space-between;
-        align-items: center;
-            nav ul {
-                display: flex;
-                justify-content: row;
-                align-items: center;
-                justify-content: space-around;
-                margin: 0;
-                height: 100%;
-
-                li {
-                    list-style: none;
-                    margin: 0px 5px;
-                }
-            }
-
-        
+        align-items: center;  
 
     }
 
@@ -39,7 +24,11 @@ body {
             justify-content: space-around;
             flex-wrap: wrap;
             margin-top: 60px;
-
+            .ctnPhotographer {
+                .ctnAvatar {
+                    cursor: pointer;
+                }
+            }
             h3 {
                 margin-bottom: 0;
             }

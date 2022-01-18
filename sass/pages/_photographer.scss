@@ -9,10 +9,10 @@ main {
         align-items: center;
         justify-content: space-around;
         background-color: $quaternaryColor;
-
+        border-radius: 5px;
         #photographerData {
             width: 30%;
-
+            padding-bottom: 60px;
             h1 {
                 font-size: 64px;
                 color: $secondaryColor;
@@ -41,6 +41,7 @@ main {
                 height: 70px;
                 border: 0;
                 width: 170px;
+                cursor: pointer;
             }
         }
 
@@ -54,6 +55,7 @@ main {
                 object-fit: cover;
                 border-radius: 50%;
                 margin: auto;
+                cursor: pointer;
             }
         }
 
