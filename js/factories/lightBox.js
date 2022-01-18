@@ -11,7 +11,7 @@ class LightBox {
         const ctnLightBox = document.getElementsByClassName('ctnLightbox')[0]
         const ctnImg = document.getElementsByClassName('ctnImg')[0]
         const allMedias = Array.from(document.getElementsByClassName('galleryItem'))
-       const isImg = medias[this.targetId]?.image ? true : false
+        const isImg = medias[this.targetId]?.image ? true : false
         ctnLightBox.style.visibility = "visible"
         const img = this.buildImage(allMedias, isImg)
         const title = document.createElement('p')
@@ -24,13 +24,13 @@ class LightBox {
 
 
     buildImage(medias, isImg) {
-        //TODO FIX THIS (i won't say how to my future me, but just fix it, i'm too lazy atm to think about it)
         document.getElementsByClassName('lightboxImg')[0]?.remove()
         const media = isImg ? document.createElement('img') :  document.createElement('video')
-        !isImg ? media.setAttribute('disablePictureInPicture', "true") : null
+        !isImg ? media.setAttribute('autoplay', "true") : null
+        !isImg ? media.setAttribute('controls', "true") : null
         media.setAttribute('src', medias[this.targetId].getAttribute('src'))
         media.setAttribute('class', "lightboxImg")
-        media.setAttribute('alt', "")
+        media.setAttribute('alt', "") //TODO
         return media
     }
 
