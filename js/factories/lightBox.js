@@ -26,8 +26,10 @@ class LightBox {
     buildImage(medias, isImg) {
         document.getElementsByClassName('lightboxImg')[0]?.remove()
         const media = isImg ? document.createElement('img') :  document.createElement('video')
-        !isImg ? media.setAttribute('autoplay', "true") : null
-        !isImg ? media.setAttribute('controls', "true") : null
+        if (!isImg) {
+            media.setAttribute('autoplay', "true")
+            media.setAttribute('controls', "true")
+        }
         media.setAttribute('src', medias[this.targetId].getAttribute('src'))
         media.setAttribute('class', "lightboxImg")
         media.setAttribute('alt', "") //TODO
