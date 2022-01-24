@@ -6,7 +6,6 @@ class Home {
 
     loadPhotographers() {
         photographerService.get().then((photographers)=> {
-            console.log(photographers)
             photographers.map((p) => {
                 //we create a section for each photographers with many datas
                 this.initPhotographersDOM(p)
@@ -50,7 +49,6 @@ class Home {
     }
 
     createBio(p) {
-        console.log(p)
         let section = document.createElement("section")
         section.setAttribute('class', 'ctnBio')
         let position = document.createElement('p')

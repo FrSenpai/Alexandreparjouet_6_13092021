@@ -23,7 +23,6 @@ class Photographer {
                 this.gallery = new Gallery(r.medias, 0)
                 this.medias = r.medias
                 //count total of likes
-                console.log(this.medias)
                 let totalLikes = 0
                 r.medias.map((m) => totalLikes += m.likes)
                 this.processPhotographerInfos(totalLikes, r.photographer.price)
@@ -196,10 +195,8 @@ then close all select boxes:*/
 
     handleUpdateFilter() {
         const items = document.getElementsByClassName("select-items")[0].getElementsByTagName('div')
-        console.log(items.length)
         for (let i = 0; i < items.length; i++) {
             items[i].addEventListener("click", (e) => {
-                console.log(e)
                 this.updateFilter(e.target.innerHTML)
             })
         }
@@ -207,7 +204,6 @@ then close all select boxes:*/
     }
 
     updateFilter(by) {
-        console.log("update !")
         const galleryItem = document.getElementsByClassName('ctnGalleryItem')
         while (galleryItem.length > 0) {
             galleryItem[0].remove()
