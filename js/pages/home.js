@@ -53,7 +53,6 @@ class Home {
         console.log(p)
         let section = document.createElement("section")
         section.setAttribute('class', 'ctnBio')
-        section.setAttribute('tabindex', 0)
         let position = document.createElement('p')
         position.textContent = p.city + ", " + p.country
         position.setAttribute('class', "position")

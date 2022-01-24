@@ -8,6 +8,7 @@ class LightBox {
     }
 
     buildLightBox(medias) {
+        document.getElementsByTagName("body")[0].style.overflow = "hidden"
         const ctnLightBox = document.getElementsByClassName('ctnLightbox')[0]
         const ctnImg = document.getElementsByClassName('ctnImg')[0]
         const allMedias = Array.from(document.getElementsByClassName('galleryItem'))
@@ -20,6 +21,7 @@ class LightBox {
         ctnImg.appendChild(img)
         ctnImg.appendChild(title)
         this.handleClickArrow(medias, allMedias )
+        this.handleClose()
     }
 
 
@@ -32,6 +34,7 @@ class LightBox {
         }
         media.setAttribute('src', medias[this.targetId].getAttribute('src'))
         media.setAttribute('class', "lightboxImg")
+        media.setAttribute('tabindex', '0')
         media.setAttribute('alt', "") //TODO
         return media
     }
@@ -54,8 +57,13 @@ class LightBox {
         ctnTitle.textContent = medias[this.targetId].title
     }
 
-    handleClosingClick() {
-
+    handleClose() {
+        document.getElementsByClassName('close')[0].addEventListener('click', () => {
+            console.log("click")
+            document.getElementsByClassName("ctnLightbox")[0].style.visibility = "hidden"
+            document.getElementsByClassName('titleImg')[0].remove()
+            document.getElementsByTagName("body")[0].style.overflow = "auto"
+        })
     }
 
     
