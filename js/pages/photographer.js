@@ -6,6 +6,7 @@ class Photographer {
         this.loadParams()
         this.processSelect()
         this.handleUpdateFilter()
+        this.handleVisibilityContactModal()
     }
 
     loadParams() {
@@ -79,6 +80,7 @@ class Photographer {
             /*for each element, create a new DIV that will act as the selected item:*/
             a = document.createElement("DIV");
             a.setAttribute("class", "select-selected");
+            a.setAttribute('tabindex', "0")
             a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
             x[i].appendChild(a);
             /*for each element, create a new DIV that will contain the option list:*/
@@ -93,6 +95,7 @@ class Photographer {
                     c.setAttribute('class', 'same-as-selected hidden');
                     initDone = true
                 }
+                c.setAttribute('tabindex', "0")
                 c.addEventListener("click", function (e) {
                     /*when an item is clicked, update the original select box,
                     and the selected item:*/
@@ -208,7 +211,7 @@ then close all select boxes:*/
         while (galleryItem.length > 0) {
             galleryItem[0].remove()
         }
-        
+
         switch (by) {
             case "Popularité":
                 this.gallery = new Gallery(this.medias, 0)
@@ -219,6 +222,29 @@ then close all select boxes:*/
             case "Titre":
                 this.gallery = new Gallery(this.medias, 2)
                 break
+        }
+    }
+
+    handleVisibilityContactModal() {
+        document.getElementsByClassName('contactMe')[0].addEventListener('click', () => {
+            console.log("éhdsjqds")
+            this.updateVisibilityContactModal()
+        })
+        document.getElementsByClassName('closeContactModal')[0].addEventListener('click', () => {
+            this.updateVisibilityContactModal()
+        })
+    }
+
+    updateVisibilityContactModal() {
+        const contactModal = document.getElementsByClassName('ctnContact')[0]
+        const body = document.getElementsByTagName('body')[0]
+        //its an empty string on first click so we need to check if empty or not too
+        if (contactModal.style.visibility === "hidden" || contactModal.style.visibility === "") {
+            contactModal.style.visibility = "visible"
+            body.style.overflow = "hidden"
+        } else {
+            contactModal.style.visibility = "hidden"
+            body.style.overflow = "visible"
         }
     }
 }
