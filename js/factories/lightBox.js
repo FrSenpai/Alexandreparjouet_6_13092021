@@ -6,15 +6,14 @@ class LightBox {
      * @param {Array} medias photographer medias
      */
     constructor(targetId, medias) {
-        console.log(targetId)
         this.targetId = targetId
         this.buildLightBox(medias)
         
     }
     /**
      * 
-     * @param {*} medias 
-     * @param {*} mediasDOM 
+     * @param {Array} medias photographer medias
+     * @param {Array} mediasDOM photographer medias DOM
      */
     generateLightBoxDOM(medias, mediasDOM) {
         document.getElementsByTagName("body")[0].style.overflow = "hidden"
@@ -59,25 +58,31 @@ class LightBox {
             arrows[i].addEventListener('click', () => this.updateMedia(i===0 ? false : true, medias, mediasDOM))
         }
     }
-
+    /**
+     * 
+     * @param {boolean} polarity its to determine the orientation of the index
+     * @param {*} medias list of all medias
+     * @param {*} mediasDOM list of medias DOM
+     */
     updateMedia(polarity, medias, mediasDOM) {
-        const ctn = document.getElementsByClassName('ctnImg')[0]
         //conditional update of targetId
-        if (polarity && this.targetId < medias.length) this.targetId++
-        else if (polarity && !(this.targetId < medias.length)) this.targetId = 0
-        if (!polarity && this.targetId === 0) this.targetId = medias.length -1
-        else this.targetId--
+        const mediasLength = medias.length - 1
+        if (polarity && this.targetId < mediasLength) this.targetId++
+        else if (polarity && !(this.targetId < mediasLength)) this.targetId = 0
+        if (!polarity && this.targetId === 0) this.targetId = mediasLength
+        else if(!polarity && this.targetId !== 0)this.targetId--
+        //update DOM
         const img = this.buildImage(mediasDOM, medias[this.targetId]?.image ? true : false)
         const ctnTitle = document.getElementsByClassName('titleImg')[0]
         document.getElementsByClassName('ctnImg')[0].insertBefore(img, ctnTitle)
         ctnTitle.textContent = medias[this.targetId].title
     }
 
+
     handleClose() {
         document.getElementsByClassName('close')[0].addEventListener('click', () => {
             this.close()
         })
-        
     }
 
     close() {
@@ -85,7 +90,11 @@ class LightBox {
             document.getElementsByClassName('titleImg')[0]?.remove()
             document.getElementsByTagName("body")[0].style.overflow = "auto"
     }
-
+    /**
+     * 
+     * @param {Array} medias list of all medias
+     * @param {Array} mediasDOM list of all medias DOM
+     */
     handleKeyEvents(medias, mediasDOM) {
         document.getElementsByTagName('body')[0].addEventListener('keydown', (k) => {
             if (k.key === "Escape") this.close()

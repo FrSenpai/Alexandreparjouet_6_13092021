@@ -68,7 +68,6 @@ class Photographer {
     }
 
     processSelect() {
-
         let x, i, j, l, ll, selElmnt, a, b, c;
         /*look for any elements with the class "custom-select":*/
         x = document.getElementsByClassName("custom-select");
@@ -226,6 +225,11 @@ then close all select boxes:*/
     }
 
     handleVisibilityContactModal() {
+        document.getElementsByTagName('body')[0].addEventListener('keydown', (k) => {
+            const contactModal = document.getElementsByClassName('ctnContact')[0]
+            if (k.key === "Escape" && contactModal.style.visibility === "visible") this.updateVisibilityContactModal()
+            
+        })
         document.getElementsByClassName('contactMe')[0].addEventListener('click', () => {
             console.log("éhdsjqds")
             this.updateVisibilityContactModal()
@@ -240,6 +244,8 @@ then close all select boxes:*/
         const body = document.getElementsByTagName('body')[0]
         //its an empty string on first click so we need to check if empty or not too
         if (contactModal.style.visibility === "hidden" || contactModal.style.visibility === "") {
+            const title = document.getElementsByClassName("contactMeTitle")[0]
+            title.innerText = "Contactez-moi" + "\n Mimi Keel"
             contactModal.style.visibility = "visible"
             body.style.overflow = "hidden"
         } else {
