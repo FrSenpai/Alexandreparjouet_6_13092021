@@ -2,6 +2,7 @@ class Photographer {
     photographer
     gallery
     medias
+    contact
     constructor() {
         this.loadParams()
         this.processSelect()
@@ -245,6 +246,7 @@ then close all select boxes:*/
         //its an empty string on first click so we need to check if empty or not too
         if (contactModal.style.visibility === "hidden" || contactModal.style.visibility === "") {
             const title = document.getElementsByClassName("contactMeTitle")[0]
+            this.contact = new Contact()
             title.innerText = "Contactez-moi" + "\n Mimi Keel"
             contactModal.style.visibility = "visible"
             body.style.overflow = "hidden"
