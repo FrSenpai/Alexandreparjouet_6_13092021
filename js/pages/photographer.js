@@ -232,7 +232,6 @@ then close all select boxes:*/
             
         })
         document.getElementsByClassName('contactMe')[0].addEventListener('click', () => {
-            console.log("éhdsjqds")
             this.updateVisibilityContactModal()
         })
         document.getElementsByClassName('closeContactModal')[0].addEventListener('click', () => {
