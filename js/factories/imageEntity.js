@@ -12,7 +12,7 @@ class ImageEntity {
         mediaDom.setAttribute('class', 'galleryItem')
         media?.video ? mediaDom.setAttribute('disablePictureInPicture', "true") : null
         mediaDom.setAttribute('tabindex', '0')
-        mediaDom.setAttribute('src', `http://localhost:5500/assets/gallery/${media.photographerId}/` + this.getType(media))
+        mediaDom.setAttribute('src', `https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/gallery/${media.photographerId}/` + this.getType(media))
         mediaDom.addEventListener('click', (e) => {
             this.initLightBox(e.target, mediasList)             
         })
@@ -29,7 +29,7 @@ class ImageEntity {
         const likes = document.createElement('p')
         likes.textContent = media.likes
         const likesIcon = document.createElement('img')
-        likesIcon.setAttribute('src', "http://localhost:5500/assets/hearth.png")
+        likesIcon.setAttribute('src', "https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/hearth.png")
         likesIcon.addEventListener('click', () => {
             this.updateLikes(media, likes)
         })

@@ -37,10 +37,10 @@ class Home {
         let linkAvatar = document.createElement('a')
         let nameTitle = document.createElement('h2')
         nameTitle.textContent = name
-        linkAvatar.href = 'http://localhost:5500/pages/photographer.html?id=' + id
+        linkAvatar.href = 'https://frsenpai.github.io/Alexandreparjouet_6_13092021/pages/photographer.html?id=' + id
         let avatar = document.createElement('img')
         avatar.alt= name
-        avatar.setAttribute('src', "http://localhost:5500/assets/portraits/" + portrait)
+        avatar.setAttribute('src', "https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/portraits/" + portrait)
         avatar.setAttribute("class", "avatar")
         linkAvatar.appendChild(avatar)
         linkAvatar.appendChild(nameTitle)
