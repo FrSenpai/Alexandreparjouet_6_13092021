@@ -40,7 +40,7 @@ class Photographer {
         totalLikesDOM.setAttribute('id', 'totalLikesCount')
         totalLikesDOM.textContent = totalLikes
         const heartIcon = document.createElement('img')
-        heartIcon.setAttribute('src', 'http://localhost:5500/assets/black_hearth.png')
+        heartIcon.setAttribute('src', 'https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/black_hearth.png')
         ctnTotalLikes.appendChild(totalLikesDOM)
         ctnTotalLikes.appendChild(heartIcon)
         const pricePerDay = document.createElement('p')
@@ -60,7 +60,7 @@ class Photographer {
         const tagline = document.createElement("p")
         tagline.textContent = this.photographer.entity.tagline
         const avatar = document.createElement('img')
-        avatar.setAttribute("src", "http://localhost:5500/assets/portraits/" + this.photographer.entity.portrait)
+        avatar.setAttribute("src", "https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/portraits/" + this.photographer.entity.portrait)
         ctnPhotographerData.appendChild(name)
         ctnPhotographerData.appendChild(position)
         ctnPhotographerData.appendChild(tagline)
