@@ -53,6 +53,7 @@ class Photographer {
     processBanner() {
         const ctnPhotographerData = document.getElementById('photographerData')
         const name = document.createElement('h1')
+        name.setAttribute('class', 'titlePhotographer')
         name.textContent = this.photographer.entity.name
         const position = document.createElement("p")
         position.setAttribute("id", "position")
@@ -245,8 +246,9 @@ then close all select boxes:*/
         //its an empty string on first click so we need to check if empty or not too
         if (contactModal.style.visibility === "hidden" || contactModal.style.visibility === "") {
             const title = document.getElementsByClassName("contactMeTitle")[0]
+            const photographerName= document.getElementsByClassName('titlePhotographer')[0]
             this.contact = new Contact()
-            title.innerText = "Contactez-moi" + "\n Mimi Keel"
+            title.innerText = "Contactez-moi" + "\n" + photographerName.textContent
             contactModal.style.visibility = "visible"
             body.style.overflow = "hidden"
         } else {
