@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 class ImageEntity {
     constructor(media, mediasList) {
         this.buildSection(media, mediasList)
@@ -47,7 +48,9 @@ class ImageEntity {
     initLightBox(target, mediasList) {
         let medias = Array.from(document.getElementsByClassName('galleryItem'))
         const targetId = medias.indexOf(target)
-        const lightBox = new LightBox(targetId, mediasList)
+        /*global LightBox*/
+        /*eslint no-undef: "error"*/
+        new LightBox(targetId, mediasList)
     }
 
     getType(media) {

@@ -19,6 +19,9 @@ class Photographer {
     getPhotographer(id) {
         photographerService.getById(id).then((r) => {
             if (r) {
+                /*global PhotographerEntity, Gallery*/
+                /*eslint no-undef: "error"*/
+
                 this.photographer = new PhotographerEntity(r)
                 this.processBanner()
                 //filtered by popularity by default
@@ -47,7 +50,7 @@ class Photographer {
         pricePerDay.textContent = price + '€ / jour'
         ctn.appendChild(ctnTotalLikes)
         ctn.appendChild(pricePerDay)
-        const main = document.getElementsByTagName("main").item(0).appendChild(ctn)
+        document.getElementsByTagName("main").item(0).appendChild(ctn)
     }
 
     processBanner() {
@@ -97,7 +100,7 @@ class Photographer {
                     initDone = true
                 }
                 c.setAttribute('tabindex', "0")
-                c.addEventListener("click", function (e) {
+                c.addEventListener("click", function () {
                     /*when an item is clicked, update the original select box,
                     and the selected item:*/
                     let y, i, k, s, h, sl, yl;
@@ -230,7 +233,7 @@ then close all select boxes:*/
         document.getElementsByTagName('body')[0].addEventListener('keydown', (k) => {
             const contactModal = document.getElementsByClassName('ctnContact')[0]
             if (k.key === "Escape" && contactModal.style.visibility === "visible") this.updateVisibilityContactModal()
-            
+
         })
         document.getElementsByClassName('contactMe')[0].addEventListener('click', () => {
             this.updateVisibilityContactModal()
@@ -246,7 +249,9 @@ then close all select boxes:*/
         //its an empty string on first click so we need to check if empty or not too
         if (contactModal.style.visibility === "hidden" || contactModal.style.visibility === "") {
             const title = document.getElementsByClassName("contactMeTitle")[0]
-            const photographerName= document.getElementsByClassName('titlePhotographer')[0]
+            const photographerName = document.getElementsByClassName('titlePhotographer')[0]
+            /*global Contact*/
+            /*eslint no-undef: "error"*/
             this.contact = new Contact()
             title.innerText = "Contactez-moi" + "\n" + photographerName.textContent
             contactModal.style.visibility = "visible"
@@ -257,5 +262,8 @@ then close all select boxes:*/
         }
     }
 }
+/*global PhotographerService*/
+/*eslint no-undef: "error"*/
+
 let photographerService = new PhotographerService()
-let home = new Photographer()
+new Photographer()

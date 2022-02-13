@@ -69,5 +69,7 @@ class Home {
 
 
 }
+/*global PhotographerService*/
+/*eslint no-undef: "error"*/
 let photographerService = new PhotographerService()
-let home = new Home()
+new Home()

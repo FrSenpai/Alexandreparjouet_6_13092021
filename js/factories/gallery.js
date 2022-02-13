@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 class Gallery {
     constructor(medias, filter) {
         this.buildGallery(medias, filter)
@@ -15,6 +16,8 @@ class Gallery {
                 medias.sort(this.dynamicSort("title"))
                 break
         }
+        /*global ImageEntity*/
+        // eslint-disable-next-line no-undef
         medias.map((m) => new ImageEntity(m, medias))
     }
 
