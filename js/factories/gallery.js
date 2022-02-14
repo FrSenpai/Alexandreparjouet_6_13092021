@@ -1,4 +1,4 @@
-import { ImageEntity } from "./ImageEntity.js";
+import { ImageEntity } from "./imageEntity.js";
 
 // eslint-disable-next-line no-unused-vars
 export class Gallery {
