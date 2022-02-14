@@ -1,4 +1,5 @@
-import { url } from "../../env/env"
+import { url } from "../../env/env.js"
+import { PhotographerService } from "../service/photographerService.js"
 
 class Home {
     constructor() {
@@ -70,7 +71,6 @@ class Home {
 
 
 }
-/*global PhotographerService*/
 /*eslint no-undef: "error"*/
 let photographerService = new PhotographerService()
 new Home()
