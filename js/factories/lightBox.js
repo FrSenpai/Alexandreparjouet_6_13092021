@@ -22,7 +22,7 @@ class LightBox {
         const ctnImg = document.getElementsByClassName('ctnImg')[0]
         const isImg = medias[this.targetId]?.image ? true : false
         ctnLightBox.style.visibility = "visible"
-        const img = this.buildImage(mediasDOM, isImg)
+        const img = this.buildImage(mediasDOM, isImg,medias[this.targetId].title)
         const title = document.createElement('p')
         title.setAttribute('class', 'titleImg')
         title.textContent = medias[this.targetId].title
@@ -39,7 +39,7 @@ class LightBox {
     }
 
 
-    buildImage(medias, isImg) {
+    buildImage(medias, isImg, title) {
         document.getElementsByClassName('lightboxImg')[0]?.remove()
         const media = isImg ? document.createElement('img') :  document.createElement('video')
         if (!isImg) {
@@ -49,7 +49,7 @@ class LightBox {
         media.setAttribute('src', medias[this.targetId].getAttribute('src'))
         media.setAttribute('class', "lightboxImg")
         media.setAttribute('tabindex', '0')
-        media.setAttribute('alt', "") //TODO
+        media.setAttribute('alt', title) 
         return media
     }
 
@@ -73,7 +73,7 @@ class LightBox {
         if (!polarity && this.targetId === 0) this.targetId = mediasLength
         else if(!polarity && this.targetId !== 0)this.targetId--
         //update DOM
-        const img = this.buildImage(mediasDOM, medias[this.targetId]?.image ? true : false)
+        const img = this.buildImage(mediasDOM, medias[this.targetId]?.image ? true : false, medias[this.targetId].title)
         const ctnTitle = document.getElementsByClassName('titleImg')[0]
         document.getElementsByClassName('ctnImg')[0].insertBefore(img, ctnTitle)
         ctnTitle.textContent = medias[this.targetId].title

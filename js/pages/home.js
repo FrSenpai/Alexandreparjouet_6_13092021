@@ -1,3 +1,4 @@
+import { url } from "../../env/env"
 
 class Home {
     constructor() {
@@ -37,10 +38,10 @@ class Home {
         let linkAvatar = document.createElement('a')
         let nameTitle = document.createElement('h2')
         nameTitle.textContent = name
-        linkAvatar.href = 'https://frsenpai.github.io/Alexandreparjouet_6_13092021/pages/photographer.html?id=' + id
+        linkAvatar.href = url+'pages/photographer.html?id=' + id
         let avatar = document.createElement('img')
         avatar.alt= name
-        avatar.setAttribute('src', "https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/portraits/" + portrait)
+        avatar.setAttribute('src', url+"assets/portraits/" + portrait)
         avatar.setAttribute("class", "avatar")
         linkAvatar.appendChild(avatar)
         linkAvatar.appendChild(nameTitle)

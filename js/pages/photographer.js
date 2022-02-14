@@ -1,3 +1,7 @@
+import { url } from "../../env/env.js"
+import { Gallery } from "../factories/gallery.js"
+import { PhotographerService } from "../service/photographerService.js"
+
 class Photographer {
     photographer
     gallery
@@ -12,14 +16,13 @@ class Photographer {
 
     loadParams() {
         const params = new URLSearchParams(window.location.search)
-        //TODO handle error
-        params.get('id') ? this.getPhotographer(Number(params.get('id'))) : null
+        params.get('id') ? this.getPhotographer(Number(params.get('id'))) : window.location.replace(url)
     }
 
     getPhotographer(id) {
         photographerService.getById(id).then((r) => {
-            if (r) {
-                /*global PhotographerEntity, Gallery*/
+            if (!r.err) {
+                /*global PhotographerEntity*/
                 /*eslint no-undef: "error"*/
 
                 this.photographer = new PhotographerEntity(r)
@@ -31,7 +34,12 @@ class Photographer {
                 let totalLikes = 0
                 r.medias.map((m) => totalLikes += m.likes)
                 this.processPhotographerInfos(totalLikes, r.photographer.price)
+            } else {
+             window.location.replace(url)   
+             console.log(url)
             }
+        }).catch((err) => {
+            console.log(err)
         })
     }
 
@@ -43,7 +51,7 @@ class Photographer {
         totalLikesDOM.setAttribute('id', 'totalLikesCount')
         totalLikesDOM.textContent = totalLikes
         const heartIcon = document.createElement('img')
-        heartIcon.setAttribute('src', 'https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/black_hearth.png')
+        heartIcon.setAttribute('src', url + 'assets/black_hearth.png')
         ctnTotalLikes.appendChild(totalLikesDOM)
         ctnTotalLikes.appendChild(heartIcon)
         const pricePerDay = document.createElement('p')
@@ -64,7 +72,7 @@ class Photographer {
         const tagline = document.createElement("p")
         tagline.textContent = this.photographer.entity.tagline
         const avatar = document.createElement('img')
-        avatar.setAttribute("src", "https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/portraits/" + this.photographer.entity.portrait)
+        avatar.setAttribute("src", url+"assets/portraits/" + this.photographer.entity.portrait)
         ctnPhotographerData.appendChild(name)
         ctnPhotographerData.appendChild(position)
         ctnPhotographerData.appendChild(tagline)
@@ -262,8 +270,6 @@ then close all select boxes:*/
         }
     }
 }
-/*global PhotographerService*/
-/*eslint no-undef: "error"*/
 
 let photographerService = new PhotographerService()
 new Photographer()
