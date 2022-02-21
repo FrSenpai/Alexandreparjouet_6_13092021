@@ -174,12 +174,12 @@ class Photographer {
                 and open/close the current select box:*/
                 //change icon when open/close select
                 const selectInp = document.getElementsByClassName('select-selected')[0]
-                if (selectInp.style.backgroundImage === 'url("../../assets/selectArrow_opened.png")') {
-                    selectInp.style.backgroundImage = "url('../../assets/selectArrow.png')"
+                if (selectInp.style.backgroundImage === 'url("https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow_opened.png")') {
+                    selectInp.style.backgroundImage = "url('https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow.png')"
                     selectInp.style.borderBottomLeftRadius = "5px"
                     selectInp.style.borderBottomRightRadius = "5px"
                 } else {
-                    selectInp.style.backgroundImage = "url('../../assets/selectArrow_opened.png')"
+                    selectInp.style.backgroundImage = "url('https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow_opened.png')"
                     selectInp.style.borderBottomLeftRadius = "0px"
                     selectInp.style.borderBottomRightRadius = "0px"
                 }
@@ -214,12 +214,12 @@ class Photographer {
                 and open/close the current select box:*/
                 //change icon when open/close select
                 const selectInp = document.getElementsByClassName('select-selected')[0]
-                if (selectInp.style.backgroundImage === 'url("../../assets/selectArrow_opened.png")') {
-                    selectInp.style.backgroundImage = "url('../../assets/selectArrow.png')"
+                if (selectInp.style.backgroundImage === 'url("https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow_opened.png")') {
+                    selectInp.style.backgroundImage = "url('https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow.png')"
                     selectInp.style.borderBottomLeftRadius = "5px"
                     selectInp.style.borderBottomRightRadius = "5px"
                 } else {
-                    selectInp.style.backgroundImage = "url('../../assets/selectArrow_opened.png')"
+                    selectInp.style.backgroundImage = "url('https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow_opened.png')"
                     selectInp.style.borderBottomLeftRadius = "0px"
                     selectInp.style.borderBottomRightRadius = "0px"
                 }
