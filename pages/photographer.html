@@ -29,8 +29,8 @@
       <section data-hidden-on-modal id="ctnMedias">
         <section class="ctnFilterBy">
           <label for="filterBy" class="labelFilterBy">Trier par</label>
-          <div class="custom-select">
-            <select name="filterBy" id="filterBy">
+          <div aria-label="Selection des filtres" class="custom-select">
+            <select aria-expanded="false" name="filterBy" id="filterBy">
               <option value="popularity">Popularité</option>
               <option value="date">Date</option>
               <option value="title">Titre</option>
@@ -39,7 +39,7 @@
         </section>
         <section class="ctnGallery"></section>
       </section>
-      <section class="ctnLightbox">
+      <section aria-modal="true" role="list" class="ctnLightbox">
         <section class="lightbox" tabindex="0">
           <p  tabindex="0">
             <img class="arrow" src="../assets/leftArrow.png" alt="Previous image">
@@ -54,11 +54,11 @@
           
         </section>
       </section>
-      <section class="ctnContact">
+      <section aria-modal="true" class="ctnContact">
         <section class="contact">
           <section class="contactTopMenu">
             <h1 class="contactMeTitle">Contactez-moi</h1>
-            <img src="../assets/close_white.png" class="closeContactModal" alt="Close Contact form">
+            <img  src="../assets/close_white.png" class="closeContactModal" tabindex="0" alt="Close Contact form">
           </section>
 
           <form>
