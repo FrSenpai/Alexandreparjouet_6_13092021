@@ -1,17 +1,21 @@
 import { url } from "../../env/env.js"
+import { Contact } from "../factories/contact.js"
+import { Filter } from "../factories/filters.js"
 import { Gallery } from "../factories/gallery.js"
+import { PhotographerEntity } from "../factories/photographerEntity.js"
 import { PhotographerService } from "../service/photographerService.js"
 
 class Photographer {
     photographer
     gallery
-    medias
     contact
+    filter
     constructor() {
         this.loadParams()
-        this.processSelect()
-        this.handleUpdateFilter()
-        this.handleVisibilityContactModal()
+        // this.processSelect()
+        // this.handleUpdateFilter()
+        this.contact = new Contact()
+        
     }
 
     loadParams() {
@@ -22,18 +26,10 @@ class Photographer {
     getPhotographer(id) {
         photographerService.getById(id).then((r) => {
             if (!r.err) {
-                /*global PhotographerEntity*/
-                /*eslint no-undef: "error"*/
-
                 this.photographer = new PhotographerEntity(r)
-                this.processBanner()
                 //filtered by popularity by default
                 this.gallery = new Gallery(r.medias, 0)
-                this.medias = r.medias
-                //count total of likes
-                let totalLikes = 0
-                r.medias.map((m) => totalLikes += m.likes)
-                this.processPhotographerInfos(totalLikes, r.photographer.price)
+                this.filter = new Filter(r.medias)
             } else {
              window.location.replace(url)   
             }
@@ -42,312 +38,9 @@ class Photographer {
         })
     }
 
-    processPhotographerInfos(totalLikes, price) {
-        const ctn = document.createElement('section')
-        ctn.setAttribute('class', 'ctnPhotographerInfos')
-        const ctnTotalLikes = document.createElement('section')
-        const totalLikesDOM = document.createElement('p')
-        totalLikesDOM.setAttribute('id', 'totalLikesCount')
-        totalLikesDOM.textContent = totalLikes
-        const heartIcon = document.createElement('img')
-        heartIcon.setAttribute('src', url + 'assets/black_hearth.png')
-        ctnTotalLikes.appendChild(totalLikesDOM)
-        ctnTotalLikes.appendChild(heartIcon)
-        const pricePerDay = document.createElement('p')
-        pricePerDay.textContent = price + '€ / jour'
-        ctn.appendChild(ctnTotalLikes)
-        ctn.appendChild(pricePerDay)
-        document.getElementsByTagName("main").item(0).appendChild(ctn)
-    }
-
-    processBanner() {
-        const ctnPhotographerData = document.getElementById('photographerData')
-        const name = document.createElement('h1')
-        name.setAttribute('class', 'titlePhotographer')
-        name.textContent = this.photographer.entity.name
-        const position = document.createElement("p")
-        position.setAttribute("id", "position")
-        position.textContent = this.photographer.entity.city + ", " + this.photographer.entity.country
-        const tagline = document.createElement("p")
-        tagline.textContent = this.photographer.entity.tagline
-        const avatar = document.createElement('img')
-        avatar.setAttribute("src", url+"assets/portraits/" + this.photographer.entity.portrait)
-        ctnPhotographerData.appendChild(name)
-        ctnPhotographerData.appendChild(position)
-        ctnPhotographerData.appendChild(tagline)
-        const ctnAvatar = document.getElementById('photographerAvatar')
-        ctnAvatar.appendChild(avatar)
-    }
-
-    processSelect() {
-        let x, i, j, l, ll, selElmnt, a, b, c;
-        /*look for any elements with the class "custom-select":*/
-        x = document.getElementsByClassName("custom-select");
-        l = x.length;
-        let initDone = false
-        for (i = 0; i < l; i++) {
-            selElmnt = x[i].getElementsByTagName("select")[0];
-            ll = selElmnt.length;
-            /*for each element, create a new DIV that will act as the selected item:*/
-            a = document.createElement("DIV");
-            a.setAttribute("class", "select-selected");
-            a.setAttribute('tabindex', "0")
-            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-            x[i].appendChild(a);
-            /*for each element, create a new DIV that will contain the option list:*/
-            b = document.createElement("DIV");
-            b.setAttribute("class", "select-items select-hide");
-            for (j = 0; j < ll; j++) {
-                /*for each option in the original select element,
-                create a new DIV that will act as an option item:*/
-                c = document.createElement("DIV");
-                c.innerHTML = selElmnt.options[j].innerHTML;
-                if (!initDone) {
-                    c.setAttribute('class', 'same-as-selected hidden');
-                    initDone = true
-                }
-                c.setAttribute('tabindex', "0")
-                c.addEventListener("click", function () {
-                    /*when an item is clicked, update the original select box,
-                    and the selected item:*/
-                    let y, i, k, s, h, sl, yl;
-                    s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-                    sl = s.length;
-                    h = this.parentNode.previousSibling;
-
-                    for (i = 0; i < sl; i++) {
-                        if (s.options[i].innerHTML == this.innerHTML) {
-                            s.selectedIndex = i;
-                            h.innerHTML = this.innerHTML;
-                            y = this.parentNode.getElementsByClassName("same-as-selected");
-                            yl = y.length;
-                            for (k = 0; k < yl; k++) {
-                                //we display again last selected value
-                                y[k].style.display = "flex"
-                                y[k].removeAttribute("class");
-
-                            }
-                            this.setAttribute("class", "same-as-selected");
-                            //we hide picked value
-                            this.style.display = "none"
-                            break;
-                        }
-                    }
-                    h.click();
-                });
-                c.addEventListener('keydown', function(key) {
-                    //catch another key
-                    if (key.key !== "Enter") return
-                    /*when an item is clicked, update the original select box,
-                    and the selected item:*/
-                    let y, i, k, s, h, sl, yl;
-                    s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-                    sl = s.length;
-                    h = this.parentNode.previousSibling;
-
-                    for (i = 0; i < sl; i++) {
-                        if (s.options[i].innerHTML == this.innerHTML) {
-                            s.selectedIndex = i;
-                            h.innerHTML = this.innerHTML;
-                            y = this.parentNode.getElementsByClassName("same-as-selected");
-                            yl = y.length;
-                            for (k = 0; k < yl; k++) {
-                                //we display again last selected value
-                                y[k].style.display = "flex"
-                                y[k].removeAttribute("class");
-
-                            }
-                            this.setAttribute("class", "same-as-selected");
-                            //we hide picked value
-                            this.style.display = "none"
-                            break;
-                        }
-                    }
-                    h.click();
-                    
-                })
-                b.appendChild(c);
-            }
-            x[i].appendChild(b);
-            a.addEventListener("click", function (e) {
-                /*when the select box is clicked, close any other select boxes,
-                and open/close the current select box:*/
-                //change icon when open/close select
-                const selectInp = document.getElementsByClassName('select-selected')[0]
-                if (selectInp.style.backgroundImage === 'url("https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow_opened.png")') {
-                    selectInp.style.backgroundImage = "url('https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow.png')"
-                    selectInp.style.borderBottomLeftRadius = "5px"
-                    selectInp.style.borderBottomRightRadius = "5px"
-                } else {
-                    selectInp.style.backgroundImage = "url('https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow_opened.png')"
-                    selectInp.style.borderBottomLeftRadius = "0px"
-                    selectInp.style.borderBottomRightRadius = "0px"
-                }
-
-                e.stopPropagation();
-                /*a function that will close all select boxes in the document,
-        except the current select box:*/
-                let x, y, i, xl, yl, arrNo = [];
-                x = document.getElementsByClassName("select-items");
-                y = document.getElementsByClassName("select-selected");
-                xl = x.length;
-                yl = y.length;
-                for (i = 0; i < yl; i++) {
-                    if (this == y[i]) {
-                        arrNo.push(i)
-                    } else {
-                        y[i].classList.remove("select-arrow-active");
-                    }
-                }
-                for (i = 0; i < xl; i++) {
-                    if (arrNo.indexOf(i)) {
-                        x[i].classList.add("select-hide");
-                    }
-                }
-
-                this.nextSibling.classList.toggle("select-hide");
-                this.classList.toggle("select-arrow-active");
-            });
-            a.addEventListener('keydown', function(e) {
-                if (e.key !== "Enter") return
- /*when the select box is clicked, close any other select boxes,
-                and open/close the current select box:*/
-                //change icon when open/close select
-                const selectInp = document.getElementsByClassName('select-selected')[0]
-                if (selectInp.style.backgroundImage === 'url("https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow_opened.png")') {
-                    selectInp.style.backgroundImage = "url('https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow.png')"
-                    selectInp.style.borderBottomLeftRadius = "5px"
-                    selectInp.style.borderBottomRightRadius = "5px"
-                } else {
-                    selectInp.style.backgroundImage = "url('https://frsenpai.github.io/Alexandreparjouet_6_13092021/assets/selectArrow_opened.png')"
-                    selectInp.style.borderBottomLeftRadius = "0px"
-                    selectInp.style.borderBottomRightRadius = "0px"
-                }
-
-                e.stopPropagation();
-                /*a function that will close all select boxes in the document,
-        except the current select box:*/
-                let x, y, i, xl, yl, arrNo = [];
-                x = document.getElementsByClassName("select-items");
-                y = document.getElementsByClassName("select-selected");
-                xl = x.length;
-                yl = y.length;
-                for (i = 0; i < yl; i++) {
-                    if (this == y[i]) {
-                        arrNo.push(i)
-                    } else {
-                        y[i].classList.remove("select-arrow-active");
-                    }
-                }
-                for (i = 0; i < xl; i++) {
-                    if (arrNo.indexOf(i)) {
-                        x[i].classList.add("select-hide");
-                    }
-                }
-
-                this.nextSibling.classList.toggle("select-hide");
-                this.classList.toggle("select-arrow-active");
-                
-            })
-            /*if the user clicks anywhere outside the select box,
-then close all select boxes:*/
-            document.addEventListener("click", this.closeAllSelect());
-            document.addEventListener("keydown",(k) => {
-                if (k.key !== "Escape") return
-                this.closeAllSelect()
-            })
-        }
-    }
+    
 
 
-    closeAllSelect(elmnt) {
-        /*a function that will close all select boxes in the document,
-        except the current select box:*/
-        let x, y, i, xl, yl, arrNo = [];
-        x = document.getElementsByClassName("select-items");
-        y = document.getElementsByClassName("select-selected");
-        xl = x.length;
-        yl = y.length;
-        for (i = 0; i < yl; i++) {
-            if (elmnt == y[i]) {
-                arrNo.push(i)
-            } else {
-                y[i].classList.remove("select-arrow-active");
-            }
-        }
-        for (i = 0; i < xl; i++) {
-            if (arrNo.indexOf(i)) {
-                x[i].classList.add("select-hide");
-            }
-        }
-
-    }
-
-    handleUpdateFilter() {
-        const items = document.getElementsByClassName("select-items")[0].getElementsByTagName('div')
-        for (let i = 0; i < items.length; i++) {
-            items[i].addEventListener("click", (e) => {
-                this.updateFilter(e.target.innerHTML)
-            })
-            items[i].addEventListener("keydown", (e) => {
-                if (e.key !== "Enter") return
-                this.updateFilter(e.target.innerHTML)
-            })
-        }
-
-    }
-
-    updateFilter(by) {
-        const galleryItem = document.getElementsByClassName('ctnGalleryItem')
-        while (galleryItem.length > 0) {
-            galleryItem[0].remove()
-        }
-
-        switch (by) {
-            case "Popularité":
-                this.gallery = new Gallery(this.medias, 0)
-                break
-            case "Date":
-                this.gallery = new Gallery(this.medias, 1)
-                break
-            case "Titre":
-                this.gallery = new Gallery(this.medias, 2)
-                break
-        }
-    }
-
-    handleVisibilityContactModal() {
-        document.getElementsByTagName('body')[0].addEventListener('keydown', (k) => {
-            const contactModal = document.getElementsByClassName('ctnContact')[0]
-            if (k.key === "Escape" && contactModal.style.visibility === "visible") this.updateVisibilityContactModal()
-
-        })
-        document.getElementsByClassName('contactMe')[0].addEventListener('click', () => {
-            this.updateVisibilityContactModal()
-        })
-        document.getElementsByClassName('closeContactModal')[0].addEventListener('click', () => {
-            this.updateVisibilityContactModal()
-        })
-    }
-
-    updateVisibilityContactModal() {
-        const contactModal = document.getElementsByClassName('ctnContact')[0]
-        const body = document.getElementsByTagName('body')[0]
-        //its an empty string on first click so we need to check if empty or not too
-        if (contactModal.style.visibility === "hidden" || contactModal.style.visibility === "") {
-            const title = document.getElementsByClassName("contactMeTitle")[0]
-            const photographerName = document.getElementsByClassName('titlePhotographer')[0]
-            /*global Contact*/
-            /*eslint no-undef: "error"*/
-            this.contact = new Contact()
-            title.innerText = "Contactez-moi" + "\n" + photographerName.textContent
-            contactModal.style.visibility = "visible"
-            body.style.overflow = "hidden"
-        } else {
-            contactModal.style.visibility = "hidden"
-            body.style.overflow = "visible"
-        }
-    }
 }
 
 let photographerService = new PhotographerService()
