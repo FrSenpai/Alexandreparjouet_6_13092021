@@ -16,6 +16,7 @@ export class ImageEntity {
         media?.video ? mediaDom.setAttribute('disablePictureInPicture', "true") : null
         mediaDom.setAttribute('tabindex', '0')
         mediaDom.setAttribute('src', url+`assets/gallery/${media.photographerId}/` + this.getType(media))
+        mediaDom.setAttribute('alt', media.title)
         mediaDom.addEventListener('click', (e) => {
             this.initLightBox(e.target, mediasList)             
         })
