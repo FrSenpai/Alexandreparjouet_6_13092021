@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
+    <title>FishEye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <a href="https://frsenpai.github.io/Alexandreparjouet_6_13092021/"><img src="../assets/logo.jpg" alt="Fisheye Home page" /></a>
+    </header>
+    <main>
+      <section data-hidden-on-modal id="ctnPhotographer">
+        <section id="photographerData"></section>
+        <section id="ctnContactMe">
+          <button class="btn contactMe">Contactez-moi</button>
+        </section>
+        <section id="photographerAvatar"></section>
+      </section>
+      <section data-hidden-on-modal id="ctnMedias">
+        <section class="ctnFilterBy">
+          <label for="filterBy" class="labelFilterBy">Trier par</label>
+          <div aria-label="Selection des filtres" class="custom-select">
+            <select aria-expanded="false" name="filterBy" id="filterBy">
+              <option value="popularity">Popularité</option>
+              <option value="date">Date</option>
+              <option value="title">Titre</option>
+            </select>
+          </div>
+        </section>
+        <section class="ctnGallery"></section>
+      </section>
+      <section aria-modal="true" role="dialog" class="ctnLightbox">
+        <section class="lightbox" tabindex="0">
+          <p  tabindex="0">
+            <img class="arrow" src="../assets/leftArrow.png" alt="Previous image">
+          </p>
+          
+          <section  class="ctnImg">
+          </section>
+          <section class="ctnRightArrow">
+              <img class="close" src="../assets/close.png" tabindex="0" alt="Close dialog">
+              <img src="../assets/rightArrow.png" class="arrow" tabindex="0" alt="Next image">
+          </section>
+          
+        </section>
+      </section>
+      <section aria-modal="true" role="dialog" class="ctnContact">
+        <section class="contact">
+          <section class="contactTopMenu">
+            <h1 class="contactMeTitle">Contactez-moi</h1>
+            <img  src="../assets/close_white.png" class="closeContactModal" tabindex="0" alt="Close Contact form">
+          </section>
+
+          <form>
+            <section>
+              <label for="firstname">Prénom</label>
+              <input type="text" name="firstname" class="formInput" id="firstname">
+            </section>
+            <section>
+              <label for="lastname">Nom</label>
+              <input type="text" name="lastname" class="formInput" id="lastname">
+            </section>
+            <section>
+              <label for="mail">Email</label>
+              <input type="text" name="mail" class="formInput" id="mail">
+            </section>
+            <section>
+              <label for="message">Votre message</label>
+              <textarea rows="9" class="formInput" name="message" id="message" ></textarea>
+            </section>
+            <button type="button" class="btn send">Envoyer</button>
+          </form>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="../js/factories/photographerEntity.js"></script>
+    <script type="module" src="../js/service/photographerService.js"></script>
+    <script type="module" src="../js/factories/imageEntity.js"></script>
+    <script src="../js/factories/lightBox.js"></script>
+    <script type="module" src="../js/factories/gallery.js"></script>
+    <script type="module" src="../js/pages/photographer.js"></script>
+    <script type="module" src="../js/factories/contact.js"></script>
+  </body>
+</html>

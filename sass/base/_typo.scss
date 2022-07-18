@@ -1,0 +1,10 @@
+// Fonts
+h1,h2,h3,h4,h5,p,li,a,strong, button, label, select {
+    font-family: "DM Sans";
+}
+
+h1 {
+    color:$primaryColor;
+    font-size: $h1Size;
+    font-weight: $h1FontWeight;
+}

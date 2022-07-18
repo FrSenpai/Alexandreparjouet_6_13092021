@@ -1,0 +1,52 @@
+.ctnGallery {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .ctnGalleryItem {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+
+        .galleryItem {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .infos {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 10px;
+
+            p {
+                color: $primaryColor;
+                font-size: 24px;
+                margin: 0;
+            }
+
+            .ctnLikes {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                p {
+                    font-weight: 500;
+                }
+
+                img {
+                    cursor: pointer;
+                    height: 19px;
+                }
+            }
+        }
+    }
+}

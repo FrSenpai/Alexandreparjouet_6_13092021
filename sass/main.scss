@@ -1,1 +1,13 @@
-@import "./base/home.scss"
+@import "./abstracts/variables.scss";
+@import "./base/base.scss";
+@import "./base/typo.scss";
+
+@import "./components/bio.scss";
+@import "./components/btn.scss";
+@import "./components/contact.scss";
+@import "./components/galleryImage";
+@import "./components/lightbox.scss";
+@import "./components/select";
+@import "./pages/home.scss";
+@import "./pages/photographer.scss";
+@import "./layout/navbar.scss"

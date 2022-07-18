@@ -1,0 +1,28 @@
+
+.btn {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #FFF;
+    background: $primaryColor;
+    border-radius: 5px;
+    padding: $btnPadding;
+    &:hover {
+        background: $secondaryColor;
+        color: black;
+    }
+}
+
+.tagList li {
+    color: $primaryColor;
+    background-color: #FFF;
+    border: 0.5px solid #C4C4C4;
+    border-radius: 15px;
+    padding: 5px;
+    &:hover {
+        background-color: $primaryColor;
+        color: white;
+        cursor: pointer;
+    }
+}
